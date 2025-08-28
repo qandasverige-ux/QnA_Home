@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- magnifier group -->
+  <circle cx="54" cy="54" r="34" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="78" y1="78" x2="108" y2="108" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- bars inside lens -->
+  <rect x="39" y="60" width="10" height="16" fill="white" rx="2" ry="2"/>
+  <rect x="53" y="50" width="10" height="26" fill="white" rx="2" ry="2"/>
+  <rect x="67" y="40" width="10" height="36" fill="white" rx="2" ry="2"/>
+</svg>

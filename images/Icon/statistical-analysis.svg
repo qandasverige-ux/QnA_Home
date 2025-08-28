@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <marker id="sa_arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="white"/>
+    </marker>
+  </defs>
+  <!-- grid of small squares -->
+  <rect x="24" y="28" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="48" y="28" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="72" y="28" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="24" y="52" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="48" y="52" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="72" y="52" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="24" y="76" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="48" y="76" width="16" height="16" fill="white" rx="3" ry="3"/>
+  <rect x="72" y="76" width="16" height="16" fill="white" rx="3" ry="3"/>
+  
+  <!-- rising trend line -->
+  <path d="M28 92 L56 64 L72 70 L100 40" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sa_arrow)"/>
+</svg>

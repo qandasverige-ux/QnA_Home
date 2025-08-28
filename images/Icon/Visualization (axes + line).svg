@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- axes -->
+  <path d="M20 20 L20 108 L108 108" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- line chart -->
+  <path d="M32 92 C 44 72, 56 80, 66 92 S 94 76, 108 60" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
