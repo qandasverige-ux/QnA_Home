@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Bar Chart">
+  <title>Bar Chart</title>
+  <!-- 轴线 -->
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 104 H108"/>
+    <path d="M20 20 V104"/>
+  </g>
+  <!-- 柱子（白色填充） -->
+  <g fill="#ffffff">
+    <rect x="28" y="72" width="16" height="32" rx="3"/>
+    <rect x="52" y="56" width="16" height="48" rx="3"/>
+    <rect x="76" y="36" width="16" height="68" rx="3"/>
+  </g>
+</svg>

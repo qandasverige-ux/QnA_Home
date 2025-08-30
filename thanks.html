@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thank you for contacting Q&A Data Analysis. We'll get back to you soon.">
+    <title>Thank You - Q&A Data Analysis</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+</head>
+<body>
+    <main>
+        <section class="thanks-section">
+            <div class="container">
+                <div class="thanks-content">
+                    <div class="thanks-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-primary);">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22,4 12,14.01 9,11.01"/>
+                        </svg>
+                    </div>
+                    <h1>Message Sent Successfully!</h1>
+                    <p class="thanks-description">
+                        Thank you for reaching out to Q&A Data Analysis. We've received your message and will get back to you within 24 hours with a detailed response tailored to your data analysis needs.
+                    </p>
+                    <div class="thanks-next-steps">
+                        <h2>What happens next?</h2>
+                        <ul>
+                            <li>We'll review your requirements and prepare a personalized response</li>
+                            <li>If applicable, we'll include preliminary recommendations and approach suggestions</li>
+                            <li>For complex projects, we may schedule a follow-up call to discuss details</li>
+                        </ul>
+                    </div>
+                    <div class="thanks-actions">
+                        <a href="./index.html" class="btn-primary">Return to Homepage</a>
+                        <a href="#papers" class="btn-secondary" onclick="window.location.href='./index.html#papers'">View Our Research</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <h3>Q&A AB</h3>
+                    <p>AI-Powered Data Intelligence for Science & Business</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="./index.html#papers">Research Papers</a></li>
+                        <li><a href="./index.html#services">Analysis Services</a></li>
+                        <li><a href="./index.html#contact">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="mailto:info@qna-analysis.com">info@qna-analysis.com</a></p>
+                    <p>Stockholm, Sweden</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn" title="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Q&A AB. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .thanks-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3xl) 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .thanks-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--card-border);
+        }
+
+        .thanks-icon {
+            margin-bottom: var(--space-xl);
+        }
+
+        .thanks-content h1 {
+            color: var(--text-primary);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-lg);
+        }
+
+        .thanks-description {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+            line-height: 1.7;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .thanks-next-steps {
+            text-align: left;
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-xl);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+        }
+
+        .thanks-next-steps h2 {
+            color: var(--text-primary);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-lg);
+        }
+
+        .thanks-next-steps ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .thanks-next-steps li {
+            position: relative;
+            padding-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .thanks-next-steps li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .thanks-actions {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .thanks-content {
+                padding: var(--space-2xl) var(--space-lg);
+            }
+
+            .thanks-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .thanks-actions .btn-primary,
+            .thanks-actions .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,6 +1,48 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Mobile menu functionality
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+            const isActive = this.classList.contains('active');
+            
+            if (isActive) {
+                // Close menu
+                this.classList.remove('active');
+                navMenu.classList.remove('active');
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                // Open menu
+                this.classList.add('active');
+                navMenu.classList.add('active');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Close mobile menu when clicking on nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+    
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -8,12 +50,19 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
+            
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 100; // Account for fixed header
+                // Get navbar height dynamically
+                const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                const offsetTop = targetSection.offsetTop - navbarHeight - 20;
+                
+                // Smooth scroll to section
                 window.scrollTo({
-                    top: offsetTop,
+                    top: Math.max(0, offsetTop), // Ensure we don't scroll to negative position
                     behavior: 'smooth'
                 });
+            } else {
+                console.warn('Target section not found:', targetId);
             }
         });
     });
@@ -28,31 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form option switching (contact vs calendar)
-    const formOptions = document.querySelectorAll('.form-option');
-    const contactForm = document.getElementById('contact-form');
-    const calendarEmbed = document.getElementById('calendar-embed');
-
-    formOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove active class from all options
-            formOptions.forEach(opt => opt.classList.remove('active'));
-            // Add active class to clicked option
-            this.classList.add('active');
-
-            const selectedOption = this.getAttribute('data-option');
-            
-            if (selectedOption === 'contact') {
-                contactForm.style.display = 'block';
-                calendarEmbed.style.display = 'none';
-            } else {
-                contactForm.style.display = 'none';
-                calendarEmbed.style.display = 'block';
-            }
-        });
-    });
-
     // Contact form handling with Formspree integration
+    const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -156,124 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // New Services Matrix Filtering
-    const servicesFilterButtons = document.querySelectorAll('.services-filter-btn');
-    const serviceCardsMatrix = document.querySelectorAll('.service-card-matrix');
-    const servicesEmptyState = document.querySelector('.services-empty-state');
-
-    function filterServicesMatrix(category) {
-        let visibleCards = 0;
-        const servicesMatrix = document.querySelector('.services-matrix');
-        
-        // Add skeleton loading
-        showSkeletonLoader();
-        
-        setTimeout(() => {
-            hideSkeletonLoader();
-            
-            serviceCardsMatrix.forEach((card, index) => {
-                const cardCategory = card.getAttribute('data-category');
-                
-                if (category === 'all' || cardCategory === category) {
-                    card.style.display = 'block';
-                    card.classList.remove('filtering-out');
-                    // Stagger animations
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 50);
-                    visibleCards++;
-                } else {
-                    card.classList.add('filtering-out');
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                        card.classList.remove('filtering-out');
-                    }, 300);
-                }
-            });
-            
-            // Show/hide empty state
-            if (visibleCards === 0) {
-                servicesEmptyState.style.display = 'block';
-                servicesMatrix.style.display = 'none';
-            } else {
-                servicesEmptyState.style.display = 'none';
-                servicesMatrix.style.display = 'grid';
-            }
-        }, 400);
-    }
-
-    function showSkeletonLoader() {
-        const servicesMatrix = document.querySelector('.services-matrix');
-        servicesMatrix.innerHTML = '';
-        
-        for (let i = 0; i < 6; i++) {
-            const skeleton = document.createElement('div');
-            skeleton.className = 'service-card-skeleton';
-            skeleton.innerHTML = `
-                <div class="skeleton-icon"></div>
-                <div class="skeleton-text title"></div>
-                <div class="skeleton-text desc"></div>
-                <div class="skeleton-text desc"></div>
-            `;
-            servicesMatrix.appendChild(skeleton);
-        }
-    }
-
-    function hideSkeletonLoader() {
-        const servicesMatrix = document.querySelector('.services-matrix');
-        const skeletons = servicesMatrix.querySelectorAll('.service-card-skeleton');
-        skeletons.forEach(skeleton => skeleton.remove());
-        
-        // Restore original cards
-        serviceCardsMatrix.forEach(card => {
-            servicesMatrix.appendChild(card);
-        });
-    }
-
-    servicesFilterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            servicesFilterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-
-            const filterValue = this.getAttribute('data-filter');
-            filterServicesMatrix(filterValue);
-        });
-
-        // Keyboard support
-        button.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-    });
-
-    // Service CTA handlers
-    const serviceCTAs = document.querySelectorAll('.service-cta');
-    serviceCTAs.forEach(cta => {
-        cta.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const serviceTitle = this.closest('.service-card-matrix').querySelector('h3').textContent;
-            
-            if (this.textContent === 'See Example') {
-                // Scroll to case studies section
-                document.querySelector('#cases').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            } else {
-                // Scroll to contact form
-                document.querySelector('#consultation').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            
-        });
-    });
 
     // Intersection Observer for scroll animations
     const observerOptions = {
@@ -290,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.service-card-new, .case-highlight, .timeline-step, .benefit-item, .paper-showcase');
+    const animatedElements = document.querySelectorAll('.service-card, .paper-showcase, .highlight-item');
     animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -319,25 +227,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add loading state for service cards
-    const serviceCardsNew = document.querySelectorAll('.service-card-new');
-    serviceCardsNew.forEach((card, index) => {
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 200);
-    });
-
     // Add keyboard navigation support
     document.addEventListener('keydown', function(e) {
-        // Escape key closes mobile menu (if implemented)
+        // Escape key closes mobile menu
         if (e.key === 'Escape') {
-            // Close any open modals or menus
-        }
-        
-        // Enter key on form options
-        if (e.key === 'Enter' && e.target.classList.contains('form-option')) {
-            e.target.click();
+            if (mobileMenuToggle && mobileMenuToggle.classList.contains('active')) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
         }
     });
 
@@ -364,3 +262,4 @@ animationStyles.textContent = `
     }
 `;
 document.head.appendChild(animationStyles);
+
