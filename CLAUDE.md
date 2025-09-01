@@ -17,9 +17,12 @@ This is a static website for "Q&A Data Analysis" - a data analysis consultancy s
 
 **Key Components:**
 - Hero section with animated starry background and gradient effects
+- About section with biomedical multi-omics focus and EU research positioning
 - Service filtering system (omics, clinical, machine learning, visualization)
 - Paper showcase section with styled "Read Full Paper" buttons
-- Contact form with client-side validation and calendar integration
+- Pricing section with discovery call banner and two-column layout (Hourly Consulting & Project Packages)
+- Contact form with client-side validation, honeypot protection, and calendar integration
+- Footer with Stockholm location and timezone information
 - Smooth scrolling navigation with active section highlighting
 - Intersection Observer animations for progressive content reveal
 
@@ -58,6 +61,8 @@ This is a static website with no build process. To develop locally:
 - Smooth transitions and hover states throughout
 
 **Content Management:**
+- About section highlights biomedical multi-omics expertise and EU research collaboration
+- Pricing structure with clear value propositions and trust indicators
 - Paper showcases hardcoded in HTML with external PDF links
 - Service cards use data-category attributes for filtering
 - Form submission simulated (no backend) with calendly integration option
@@ -65,9 +70,12 @@ This is a static website with no build process. To develop locally:
 ## Key Features to Maintain
 
 **Core Functionality:**
+- About section positioning as biomedical multi-omics specialists with EU research focus
+- Pricing section with discovery call CTA and conversion-optimized layout
 - Services matrix filtering with empty states and skeleton loading
 - Paper showcase hover effects and uniform button sizing
-- Form validation with dual-mode switching (contact vs calendar)
+- Form validation with dual-mode switching (contact vs calendar) and honeypot protection
+- Footer trust signals with Stockholm location and timezone
 - Smooth scrolling navigation with visual feedback
 
 **Visual Effects:**
@@ -80,3 +88,31 @@ This is a static website with no build process. To develop locally:
 - All animations use CSS transforms and opacity for optimal performance
 - Visual effects are applied via pseudo-elements to avoid layout impact
 - Intersection Observer used efficiently for scroll-based animations
+
+## Recent Updates (2025)
+
+**UX and Conversion Improvements:**
+- Added concise About section focusing on biomedical multi-omics integration and EU research collaboration
+- Implemented comprehensive pricing section with discovery call banner and two-column layout
+- Enhanced contact form with honeypot spam protection and free consultation messaging
+- Added footer trust elements with Stockholm location and timezone information
+- Optimized pricing strategy with proper anchoring, value propositions, and conversion-focused CTAs
+- Used target.svg icon consistently throughout pricing section (avoid emoji usage)
+
+**Technical Implementation:**
+- CSS variables maintained for consistent theming across new sections
+- Responsive grid layouts for pricing cards (auto-fit, minmax(350px, 1fr))
+- Backdrop filters and gradient effects integrated seamlessly with existing design
+- Navigation updated to include pricing section link
+- Relative path structure maintained (/QnA_Home/) for GitHub Pages compatibility
+
+**Content Strategy:**
+- Professional business language with satisfaction guarantees and invoicing terms
+- Multi-currency pricing display (SEK/EUR/USD) for international accessibility  
+- Trust indicators and social proof elements integrated into pricing structure
+- Clear value propositions for each service tier with specific deliverables
+
+**Working note**
+- Always ask me question before any action if you are unclear.
+- When updating pricing section, use target.svg icon not emoji
+- Maintain existing visual effects and animation system integrity
