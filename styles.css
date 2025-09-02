@@ -1,3 +1,30 @@
+/* Page Transition and Navigation Fixes */
+body {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+/* Add top padding to main content to prevent navbar covering */
+main {
+  padding-top: 80px;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* CSS Variables for Theme Management */
 :root {
   /* Dark Theme (Default) */

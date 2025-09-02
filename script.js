@@ -1,5 +1,32 @@
-// DOM Content Loaded
+// Page transition handling
 document.addEventListener('DOMContentLoaded', function() {
+    // Add page transition animations
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+        const pageTransition = document.querySelector('.page-transition');
+        if (pageTransition) {
+            pageTransition.classList.add('loaded');
+        }
+    }, 100);
+
+    // Handle page navigation with smooth transitions
+    const navLinks = document.querySelectorAll('.nav-link[href$=".html"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            
+            // Add exit transition
+            document.body.style.opacity = '0';
+            
+            // Navigate after transition
+            setTimeout(() => {
+                window.location.href = href;
+            }, 300);
+        });
+    });
+    
+    // Original DOM Content Loaded functionality
     
     // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -23,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Close mobile menu when clicking on nav links
-        navLinks.forEach(link => {
+        allNavLinks.forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
                     mobileMenuToggle.classList.remove('active');
@@ -43,29 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Get navbar height dynamically
-                const navbarHeight = navbar ? navbar.offsetHeight : 80;
-                const offsetTop = targetSection.offsetTop - navbarHeight - 20;
-                
-                // Smooth scroll to section
-                window.scrollTo({
-                    top: Math.max(0, offsetTop), // Ensure we don't scroll to negative position
-                    behavior: 'smooth'
-                });
-            } else {
-                console.warn('Target section not found:', targetId);
-            }
-        });
-    });
+    // Get all navigation links for mobile menu functionality
+    const allNavLinks = document.querySelectorAll('.nav-link');
 
     // Navbar scroll effect with blur and shadow
     const navbar = document.querySelector('.navbar');
@@ -206,26 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Active section highlighting in navigation
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section[id]');
-        
-        let currentSection = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active-section');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active-section');
-            }
-        });
-    });
+    // Remove active section highlighting since we're using separate pages
 
     // Add keyboard navigation support
     document.addEventListener('keydown', function(e) {
